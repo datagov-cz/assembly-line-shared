@@ -1,6 +1,6 @@
 {
   "name": "@opendata-mvcr/assembly-line-shared",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Common front end components for Assembly Line",
   "homepage": "https://github.com/opendata-mvcr/assembly-line-shared#readme",
   "author": "Karel Klíma",
@@ -8,8 +8,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "ttsc --project tsconfig.prod.json",
