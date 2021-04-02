@@ -16,6 +16,7 @@ export type Components = {
 }
 
 export type Config = {
+  ID: string
   CONTEXT: string
   URL: string
   COMPONENTS: string

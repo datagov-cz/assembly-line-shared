@@ -43,7 +43,7 @@ const buildComponents = (windowConfig: Config) => {
  * `const myKeyStringValue = env.get('MY_KEY')`
  * `const components = env.getComponents()`
  */
-export class Env<LocalVars extends string> {
+export class Env<LocalVars extends string = never> {
   private env: Record<string, string> & Config
   private components: Components
 
