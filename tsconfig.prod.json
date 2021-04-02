@@ -5,11 +5,13 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "*": ["*"],
+      "*": ["*"]
     },
-    "plugins": [{
-      "transform": "@zerollup/ts-transform-paths",
-    }],
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths"
+      }
+    ],
     "module": "CommonJS",
     "target": "Es2018",
     "lib": ["dom", "esnext"],
@@ -20,6 +22,6 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "noEmit": false,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   }
 }

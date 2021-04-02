@@ -1,1 +1,1 @@
-export const TEST = 123
+export { Env } from 'env'
