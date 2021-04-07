@@ -1,10 +1,10 @@
-import { Env } from 'index'
+import { Env } from "index";
 
-import { TextDecoder } from 'util'
+import { TextDecoder } from "util";
 
 // Polyfill for encoding which isn't present globally in jsdom, taken from Node
 // This is a jsdom issue: https://github.com/jsdom/jsdom/issues/2524
-;(global as any).TextDecoder = TextDecoder
+(global as any).TextDecoder = TextDecoder;
 
 const MOCK_COMPONENTS = btoa(
   `al-sgov-server:
@@ -43,37 +43,37 @@ al-issue-tracker:
   meta:
     new-bug: https://github.com/opendata-mvcr/sgov-assembly-line/issues/new?labels=bug&template=po-adavek-na-opravu.md&title=
     new-feature: https://github.com/opendata-mvcr/sgov-assembly-line/issues/new?labels=enhancement&template=po-adavek-na-novou-funkcionalitu.md&title=`
-)
+);
 
-type WindowWithConfig = Window & { __config__: object }
+type WindowWithConfig = Window & { __config__: object };
 
-describe('Env', () => {
+describe("Env", () => {
   beforeAll(() => {
-    ;((global.window as unknown) as WindowWithConfig).__config__ = {
-      ID: 'example',
-      URL: 'http://example.com',
+    ((global.window as unknown) as WindowWithConfig).__config__ = {
+      ID: "example",
+      URL: "http://example.com",
       COMPONENTS: MOCK_COMPONENTS,
-    }
-  })
+    };
+  });
 
-  it('should load default configuration', () => {
-    const env = new Env({})
-    expect(env).toBeDefined()
-    expect(env.get('ID')).toEqual('example')
-    expect(env.get('URL')).toEqual('http://example.com')
-    expect(env.getComponents()['al-mission-control'].name).toEqual(
-      'Mission Control'
-    )
-  })
+  it("should load default configuration", () => {
+    const env = new Env({});
+    expect(env).toBeDefined();
+    expect(env.get("ID")).toEqual("example");
+    expect(env.get("URL")).toEqual("http://example.com");
+    expect(env.getComponents()["al-mission-control"].name).toEqual(
+      "Mission Control"
+    );
+  });
 
-  it('should load local configuration', () => {
+  it("should load local configuration", () => {
     const localProcessEnv = {
-      REACT_APP_MY_ENV: 'lorem',
-      REACT_APP_MY_OTHER_ENV: 'ipsum',
-    }
-    type LocalVars = 'MY_ENV' | 'MY_OTHER_ENV'
-    const env = new Env<LocalVars>(localProcessEnv)
-    expect(env.get('MY_ENV')).toEqual('lorem')
-    expect(env.get('MY_OTHER_ENV')).toEqual('ipsum')
-  })
-})
+      REACT_APP_MY_ENV: "lorem",
+      REACT_APP_MY_OTHER_ENV: "ipsum",
+    };
+    type LocalVars = "MY_ENV" | "MY_OTHER_ENV";
+    const env = new Env<LocalVars>(localProcessEnv);
+    expect(env.get("MY_ENV")).toEqual("lorem");
+    expect(env.get("MY_OTHER_ENV")).toEqual("ipsum");
+  });
+});
