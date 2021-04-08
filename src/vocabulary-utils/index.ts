@@ -2,7 +2,7 @@ import vocabularyTypes from "./vocabularyTypes.json";
 
 /**
  * Usage:
- * `const components = getVocabularyShortLabel("https://slovník.gov.cz/agendový/101")`
+ * `const shortLabel = getVocabularyShortLabel("https://slovník.gov.cz/agendový/101")`
  */
 export function getVocabularyShortLabel(vocabularyIri: string) {
     const vocabularies = vocabularyTypes
