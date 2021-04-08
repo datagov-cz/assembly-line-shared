@@ -5,6 +5,7 @@
     "paths": {
       "*": ["*"]
     },
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "importHelpers": false,
     "noEmit": true,
