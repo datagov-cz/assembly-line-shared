@@ -1,4 +1,4 @@
-import { Env } from "index";
+import { setProcessEnv, getEnvInstance } from "index";
 
 import { TextDecoder } from "util";
 
@@ -49,7 +49,13 @@ type WindowWithConfig = Window & { __config__: object };
 
 describe("Env", () => {
   beforeAll(() => {
-    (global.window as unknown as WindowWithConfig).__config__ = {
+    const localProcessEnv = {
+      REACT_APP_MY_ENV: "lorem",
+      REACT_APP_MY_OTHER_ENV: "ipsum",
+    };
+    setProcessEnv(localProcessEnv);
+
+    ((global.window as unknown) as WindowWithConfig).__config__ = {
       ID: "example",
       URL: "http://example.com",
       COMPONENTS: MOCK_COMPONENTS,
@@ -57,7 +63,7 @@ describe("Env", () => {
   });
 
   it("should load default configuration", () => {
-    const env = new Env({});
+    const env = getEnvInstance();
     expect(env).toBeDefined();
     expect(env.get("ID")).toEqual("example");
     expect(env.get("URL")).toEqual("http://example.com");
@@ -67,12 +73,8 @@ describe("Env", () => {
   });
 
   it("should load local configuration", () => {
-    const localProcessEnv = {
-      REACT_APP_MY_ENV: "lorem",
-      REACT_APP_MY_OTHER_ENV: "ipsum",
-    };
     type LocalVars = "MY_ENV" | "MY_OTHER_ENV";
-    const env = new Env<LocalVars>(localProcessEnv);
+    const env = getEnvInstance<LocalVars>();
     expect(env.get("MY_ENV")).toEqual("lorem");
     expect(env.get("MY_OTHER_ENV")).toEqual("ipsum");
   });
