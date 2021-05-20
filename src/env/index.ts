@@ -2,6 +2,20 @@ import { parse } from "yaml";
 
 import { Components, Config } from "./types";
 
+let appProcessEnv: NodeJS.ProcessEnv | undefined = undefined;
+
+/**
+ * Lets the application set its own process.env to overwrite or extend default configuration
+ */
+export const setProcessEnv = (processEnv: NodeJS.ProcessEnv) => {
+  appProcessEnv = processEnv;
+};
+
+/**
+ * Returns app process.env
+ */
+const getProcessEnv = () => appProcessEnv;
+
 /**
  * Returns the default configuration stored in window.__config__ object
  */
@@ -37,20 +51,22 @@ const buildComponents = (windowConfig: Config) => {
 };
 
 /**
- * Usage:
- * `type LocalVars = 'MY_KEY' | 'MY_OTHER_KEY'`
- * `const env = new Env<LocalVars>(process.env)`
- * `const myKeyStringValue = env.get('MY_KEY')`
- * `const components = env.getComponents()`
+ * Env class to read environment and config variables
+ * Do not use directly, instead @see getEnvInstance
  */
-export class Env<LocalVars extends string = never> {
+class Env<LocalVars extends string = never> {
   private env: Record<string, string> & Config;
   private components: Components;
 
-  constructor(processEnv: NodeJS.ProcessEnv, windowConfig?: Config) {
-    const rawConfig = windowConfig ? windowConfig : getConfig();
-    this.env = buildEnv(processEnv, rawConfig);
-    console.log(this.env);
+  constructor() {
+    const processEnv = getProcessEnv();
+    if (!processEnv) {
+      throw new Error(
+        `Trying to create Env instance before setting process.env to setProcessEnv`
+      );
+    }
+    const config = getConfig();
+    this.env = buildEnv(processEnv, config);
     this.components = buildComponents(this.env);
   }
 
@@ -66,3 +82,24 @@ export class Env<LocalVars extends string = never> {
     return this.components;
   }
 }
+
+/**
+ * Singleton Env instance
+ */
+let envInstance: Env;
+
+/**
+ * Usage:
+ * `setProcessEnv(process.env)`
+ * `...`
+ * `type LocalVars = 'MY_KEY' | 'MY_OTHER_KEY'`
+ * `const env = getEnvInstance<LocalVars>()`
+ * `const myKeyStringValue = env.get('MY_KEY')`
+ * `const components = env.getComponents()`
+ */
+export const getEnvInstance = <LocalVars extends string = never>() => {
+  if (!envInstance) {
+    envInstance = new Env();
+  }
+  return envInstance as Env<LocalVars>;
+};
