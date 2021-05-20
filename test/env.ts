@@ -49,7 +49,7 @@ type WindowWithConfig = Window & { __config__: object };
 
 describe("Env", () => {
   beforeAll(() => {
-    ((global.window as unknown) as WindowWithConfig).__config__ = {
+    (global.window as unknown as WindowWithConfig).__config__ = {
       ID: "example",
       URL: "http://example.com",
       COMPONENTS: MOCK_COMPONENTS,
