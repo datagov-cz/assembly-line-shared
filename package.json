@@ -1,6 +1,6 @@
 {
   "name": "@opendata-mvcr/assembly-line-shared",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Common front end components for Assembly Line",
   "homepage": "https://github.com/opendata-mvcr/assembly-line-shared#readme",
   "author": "Karel Klíma",
