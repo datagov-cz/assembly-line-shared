@@ -55,7 +55,7 @@ describe("Env", () => {
     };
     setProcessEnv(localProcessEnv);
 
-    ((global.window as unknown) as WindowWithConfig).__config__ = {
+    (global.window as unknown as WindowWithConfig).__config__ = {
       ID: "example",
       URL: "http://example.com",
       COMPONENTS: MOCK_COMPONENTS,
