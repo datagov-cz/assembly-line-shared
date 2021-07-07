@@ -41,4 +41,11 @@ describe("Test vocabulary utils", () => {
     );
     expect(output).toEqual(expectedOutput);
   });
+  test("G-SGoV label can contain dot", () => {
+    const expectedOutput = "G-SGoV-a.b";
+    const output = getVocabularyShortLabel(
+        "https://slovník.gov.cz/generický/a.b"
+    );
+    expect(output).toEqual(expectedOutput);
+  });
 });
