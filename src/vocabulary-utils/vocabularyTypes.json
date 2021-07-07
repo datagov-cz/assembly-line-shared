@@ -1,6 +1,6 @@
 [
   {
-    "regex": "^https://slovník.gov.cz/datový/([ěščřžýáíéóúůďťňa-z0-9-]+)$",
+    "regex": "^https://slovník.gov.cz/datový/([ěščřžýáíéóúůďťňa-z0-9-.]+)$",
     "shortName": "D-SGoV-{id}"
   },
   {
@@ -12,7 +12,7 @@
     "shortName": "L-SGoV-{id}"
   },
   {
-    "regex": "^https://slovník.gov.cz/generický/([ěščřžýáíéóúůďťňa-z0-9-]+$)",
+    "regex": "^https://slovník.gov.cz/generický/([ěščřžýáíéóúůďťňa-z0-9-.]+$)",
     "shortName": "G-SGoV-{id}"
   },
   {
