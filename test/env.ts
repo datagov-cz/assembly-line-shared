@@ -6,7 +6,7 @@ import { TextDecoder } from "util";
 // This is a jsdom issue: https://github.com/jsdom/jsdom/issues/2524
 (global as any).TextDecoder = TextDecoder;
 
-const MOCK_COMPONENTS = btoa(
+const MOCK_COMPONENTS = Buffer.from(
   `al-sgov-server:
   name: SGoV Service
   url: https://xn--slovnk-test-scb.mvcr.gov.cz/modelujeme/sluzby/sgov-server
@@ -43,7 +43,7 @@ al-issue-tracker:
   meta:
     new-bug: https://github.com/opendata-mvcr/sgov-assembly-line/issues/new?labels=bug&template=po-adavek-na-opravu.md&title=
     new-feature: https://github.com/opendata-mvcr/sgov-assembly-line/issues/new?labels=enhancement&template=po-adavek-na-novou-funkcionalitu.md&title=`
-);
+).toString("base64");
 
 type WindowWithConfig = Window & { __config__: object };
 
@@ -55,7 +55,7 @@ describe("Env", () => {
     };
     setProcessEnv(localProcessEnv);
 
-    (global.window as unknown as WindowWithConfig).__config__ = {
+    (global as unknown as WindowWithConfig).__config__ = {
       ID: "example",
       URL: "http://example.com",
       COMPONENTS: MOCK_COMPONENTS,
