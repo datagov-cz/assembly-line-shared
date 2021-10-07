@@ -1,6 +1,6 @@
 {
   "name": "@opendata-mvcr/assembly-line-shared",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Common front end components for Assembly Line",
   "homepage": "https://github.com/opendata-mvcr/assembly-line-shared#readme",
   "author": "KODI Team",
@@ -12,7 +12,7 @@
   "module": "./dist/index.module.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "./dist"
+    "dist"
   ],
   "scripts": {
     "build": "microbundle --jsx React.createElement --tsconfig tsconfig.prod.json",
