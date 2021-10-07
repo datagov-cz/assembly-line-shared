@@ -21,3 +21,10 @@ export type Config = {
   URL: string;
   COMPONENTS: string;
 };
+
+export type NetlifyConfig = {
+  NETLIFY: string;
+  NETLIFY_CONTEXT: string;
+  NETLIFY_URL: string;
+  NETLIFY_DEPLOY_PRIME_URL: string;
+};
