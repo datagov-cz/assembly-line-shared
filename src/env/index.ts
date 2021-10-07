@@ -1,6 +1,6 @@
 import { parse } from "yaml";
 
-import type { Components, Config } from "./types";
+import type { Components, Config, NetlifyConfig } from "./types";
 
 let appProcessEnv: NodeJS.ProcessEnv | undefined = undefined;
 
@@ -55,7 +55,7 @@ const buildComponents = (windowConfig: Config) => {
  * Do not use directly, instead @see getEnvInstance
  */
 class Env<LocalVars extends string = never> {
-  private env: Record<string, string> & Config;
+  private env: Record<string, string> & Config & Partial<NetlifyConfig>;
   private components: Components;
 
   constructor() {
@@ -70,7 +70,18 @@ class Env<LocalVars extends string = never> {
     this.components = buildComponents(this.env);
   }
 
-  get(name: LocalVars | keyof Config, defaultValue?: string): string {
+  get(
+    name: LocalVars | keyof Config | keyof NetlifyConfig,
+    defaultValue?: string
+  ): string {
+    // If URL var is required and the app runs on Netlify, feed it proper URL based on Netlify configuration
+    if (name === "URL" && this.env.NETLIFY === "true") {
+      name =
+        this.env.NETLIFY_CONTEXT === "production"
+          ? "NETLIFY_URL" // main Netlify URL
+          : "NETLIFY_DEPLOY_PRIME_URL"; // deploy preview
+    }
+
     const value = this.env[name] || defaultValue;
     if (value !== undefined) {
       return value;
@@ -97,8 +108,10 @@ let envInstance: Env;
  * `const myKeyStringValue = env.get('MY_KEY')`
  * `const components = env.getComponents()`
  */
-export const getEnvInstance = <LocalVars extends string = never>() => {
-  if (!envInstance) {
+export const getEnvInstance = <LocalVars extends string = never>(
+  forceNewInstance?: true
+) => {
+  if (!envInstance || forceNewInstance) {
     envInstance = new Env();
   }
   return envInstance as Env<LocalVars>;
