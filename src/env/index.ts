@@ -1,6 +1,6 @@
 import { parse } from "yaml";
 
-import { Components, Config } from "./types";
+import type { Components, Config } from "./types";
 
 let appProcessEnv: NodeJS.ProcessEnv | undefined = undefined;
 
