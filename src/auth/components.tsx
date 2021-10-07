@@ -73,7 +73,7 @@ export const Auth: React.FC<AuthProps> = ({
           setUser(user);
         }
       } catch (error) {
-        throwError(error);
+        throwError(error as Error);
       }
     };
     getUser();
@@ -86,7 +86,7 @@ export const Auth: React.FC<AuthProps> = ({
         const user = await userManager.getUser();
         setUser(user);
       } catch (error) {
-        throwError(error);
+        throwError(error as Error);
       }
     };
 
@@ -104,7 +104,7 @@ export const Auth: React.FC<AuthProps> = ({
           redirect_uri: generateRedirectUri(location.href),
         });
       } catch (error) {
-        throwError(error);
+        throwError(error as Error);
       }
     };
 

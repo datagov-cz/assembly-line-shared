@@ -1,18 +1,4 @@
 {
-  "include": ["src/**/*"],
-  "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-      "*": ["*"]
-    },
-    "module": "ESNext",
-    "target": "ESNext",
-    "noEmit": true,
-    "strict": true,
-    "moduleResolution": "node",
-    "jsx": "react",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
-  }
+  "extends": "./tsconfig.prod.json",
+  "include": ["src/**/*", "test/**/*"]
 }
