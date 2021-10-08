@@ -64,13 +64,18 @@ export const Auth: React.FC<AuthProps> = ({
       try {
         // Try to get user information
         const user = await userManager.getUser();
-        if (!user || user.expired) {
+
+        if (user && user.access_token && !user.expired) {
+          // User authenticated
+          // NOTE: the oidc-client-js library never returns null if the user is not authenticated
+          // Checking for existence of BOTH access_token and expired field seems OK
+          // Checking only for expired field is not enough
+          setUser(user);
+        } else {
           // User not authenticated -> trigger auth flow
           await userManager.signinRedirect({
             redirect_uri: generateRedirectUri(location.href),
           });
-        } else {
-          setUser(user);
         }
       } catch (error) {
         throwError(error as Error);
