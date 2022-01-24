@@ -48,4 +48,18 @@ describe("Test vocabulary utils", () => {
     );
     expect(output).toEqual(expectedOutput);
   });
+  test("HTTP links are supported", () => {
+    const inputData: {[key: string]: string} = {
+      "D-SGoV-test": "http://slovník.gov.cz/datový/test",
+      "A-SGoV-test": "http://slovník.gov.cz/agendový/test",
+      "L-SGoV-111/2009": "http://slovník.gov.cz/legislativní/sbírka/111/2009",
+      "G-SGoV-test": "http://slovník.gov.cz/generický/test",
+      "V-SGoV": "http://slovník.gov.cz/veřejný-sektor",
+      "Z-SGoV": "http://slovník.gov.cz/základní"
+    }
+    for (let key of Object.keys(inputData)) {
+      const output = getVocabularyShortLabel(inputData[key]);
+      expect(output).toEqual(`${key}`)
+    }
+  });
 });
