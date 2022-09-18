@@ -1,4 +1,4 @@
-import vocabularyTypes from "./vocabularyTypes.json";
+import vocabularyTypes from "./vocabularyTypes";
 
 /**
  * Usage:

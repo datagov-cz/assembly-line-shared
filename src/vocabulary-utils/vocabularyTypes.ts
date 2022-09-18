@@ -1,4 +1,4 @@
-[
+const vocabularyTypes = [
   {
     "regex": "^https://slovník.gov.cz/datový/([ěščřžýáíéóúůďťňa-z0-9-.]+)$",
     "shortName": "D-SGoV-{id}"
@@ -24,3 +24,5 @@
     "shortName": "Z-SGoV"
   }
 ]
+
+export default vocabularyTypes;
