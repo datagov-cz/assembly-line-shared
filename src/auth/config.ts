@@ -4,7 +4,7 @@ import { getEnvInstance } from "env";
  * Base64 encoding helper
  */
 const encodeBase64 = (uri: string) => {
-  return Buffer.from(uri).toString("base64");
+  return btoa(uri);
 };
 
 /**
