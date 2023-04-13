@@ -1,8 +1,8 @@
 {
-  "name": "@opendata-mvcr/assembly-line-shared",
-  "version": "0.3.2",
+  "name": "@datagov-cz/assembly-line-shared",
+  "version": "0.3.3",
   "description": "Common front end components for Assembly Line",
-  "homepage": "https://github.com/opendata-mvcr/assembly-line-shared#readme",
+  "homepage": "https://github.com/datagov-cz/assembly-line-shared#readme",
   "author": "KODI Team",
   "license": "MIT",
   "type": "module",
@@ -23,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/opendata-mvcr/assembly-line-shared.git"
+    "url": "git+https://github.com/datagov-cz/assembly-line-shared.git"
   },
   "bugs": {
-    "url": "https://github.com/opendata-mvcr/assembly-line-shared/issues"
+    "url": "https://github.com/datagov-cz/assembly-line-shared/issues"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",

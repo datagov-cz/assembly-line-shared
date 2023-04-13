@@ -39,10 +39,10 @@ al-mission-control:
   meta: {}
 al-issue-tracker:
   name: Issue Tracker
-  url: https://github.com/opendata-mvcr/sgov-assembly-line/issues
+  url: https://github.com/datagov-cz/sgov-assembly-line/issues
   meta:
-    new-bug: https://github.com/opendata-mvcr/sgov-assembly-line/issues/new?labels=bug&template=po-adavek-na-opravu.md&title=
-    new-feature: https://github.com/opendata-mvcr/sgov-assembly-line/issues/new?labels=enhancement&template=po-adavek-na-novou-funkcionalitu.md&title=`
+    new-bug: https://github.com/datagov-cz/sgov-assembly-line/issues/new?labels=bug&template=po-adavek-na-opravu.md&title=
+    new-feature: https://github.com/datagov-cz/sgov-assembly-line/issues/new?labels=enhancement&template=po-adavek-na-novou-funkcionalitu.md&title=`
 ).toString("base64");
 
 type WindowWithConfig = Window & { __config__: object };
