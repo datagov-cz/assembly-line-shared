@@ -42,7 +42,7 @@ al-issue-tracker:
   url: https://github.com/datagov-cz/sgov-assembly-line/issues
   meta:
     new-bug: https://github.com/datagov-cz/sgov-assembly-line/issues/new?labels=bug&template=po-adavek-na-opravu.md&title=
-    new-feature: https://github.com/datagov-cz/sgov-assembly-line/issues/new?labels=enhancement&template=po-adavek-na-novou-funkcionalitu.md&title=`
+    new-feature: https://github.com/datagov-cz/sgov-assembly-line/issues/new?labels=enhancement&template=po-adavek-na-novou-funkcionalitu.md&title=`,
 ).toString("base64");
 
 type WindowWithConfig = Window & { __config__: object };
@@ -68,7 +68,7 @@ describe("Env", () => {
     expect(env.get("ID")).toEqual("example");
     expect(env.get("URL")).toEqual("http://example.com");
     expect(env.getComponents()["al-mission-control"].name).toEqual(
-      "Mission Control"
+      "Mission Control",
     );
   });
 

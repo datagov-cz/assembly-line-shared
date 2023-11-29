@@ -28,7 +28,7 @@ export const getOidcConfig = () => {
     authority: COMPONENTS["al-auth-server"].url,
     client_id: ID,
     redirect_uri: `${URL}/oidc-signin-callback.html?forward_uri=${encodeForwardUri(
-      URL
+      URL,
     )}`,
     silent_redirect_uri: `${URL}/oidc-silent-callback.html`,
     post_logout_redirect_uri: URL,
@@ -45,7 +45,7 @@ export const getOidcConfig = () => {
 export const generateRedirectUri = (forwardUri: string) => {
   const env = getEnvInstance();
   return `${env.get(
-    "URL"
+    "URL",
   )}/oidc-signin-callback.html?forward_uri=${encodeForwardUri(forwardUri)}`;
 };
 

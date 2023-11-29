@@ -11,8 +11,8 @@ export function getVocabularyShortLabel(vocabularyIri: string) {
       return !match
         ? null
         : match.length == 1
-        ? v.shortName
-        : v.shortName.replace("{id}", match[1]);
+          ? v.shortName
+          : v.shortName.replace("{id}", match[1]);
     })
     .filter((v) => v);
   return !vocabularies || vocabularies.length > 1 ? null : vocabularies[0];

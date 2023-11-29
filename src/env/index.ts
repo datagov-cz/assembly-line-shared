@@ -41,7 +41,7 @@ const buildComponents = (windowConfig: Config) => {
     const base64String = windowConfig.COMPONENTS;
     // Use TextDecoder interface to properly decode UTF-8 characters
     const yamlString = new TextDecoder("utf-8").decode(
-      Uint8Array.from(atob(base64String), (c) => c.charCodeAt(0))
+      Uint8Array.from(atob(base64String), (c) => c.charCodeAt(0)),
     );
     return parse(yamlString);
   } catch (error: any) {
@@ -62,7 +62,7 @@ class Env<LocalVars extends string = never> {
     const processEnv = getProcessEnv();
     if (!processEnv) {
       throw new Error(
-        `Trying to create Env instance before setting process.env to setProcessEnv`
+        `Trying to create Env instance before setting process.env to setProcessEnv`,
       );
     }
     const config = getConfig();
@@ -72,7 +72,7 @@ class Env<LocalVars extends string = never> {
 
   get(
     name: LocalVars | keyof Config | keyof NetlifyConfig,
-    defaultValue?: string
+    defaultValue?: string,
   ): string {
     // If URL var is required and the app runs on Netlify, feed it proper URL based on Netlify configuration
     if (name === "URL" && this.env.NETLIFY === "true") {
@@ -109,7 +109,7 @@ let envInstance: Env;
  * `const components = env.getComponents()`
  */
 export const getEnvInstance = <LocalVars extends string = never>(
-  forceNewInstance?: true
+  forceNewInstance?: true,
 ) => {
   if (!envInstance || forceNewInstance) {
     envInstance = new Env();
