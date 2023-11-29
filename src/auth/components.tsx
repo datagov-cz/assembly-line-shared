@@ -18,7 +18,7 @@ const useThrow = () => {
       setState(() => {
         throw error;
       }),
-    [setState]
+    [setState],
   );
   return callback;
 };
