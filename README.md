@@ -1,6 +1,6 @@
 # Assembly Line Shared Components
 
-Sdílené front end komponenty pro nástroje výrobní linky
+Sdílené front-end komponenty pro nástroje výrobní linky
 
 ## Jak vytvořit nový release
 
